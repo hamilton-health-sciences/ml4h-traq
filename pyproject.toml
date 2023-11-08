@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "traq"
+version = "0.1.0"
+description = "Preprocess clinical trials data for TRAQ"
+authors = ["Walter Nelson <nelsonwa@hhsc.ca>"]
+readme = "README.md"
+packages = [{include = "traq"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyspark = "^3.4.1"
+pandas = "^2.0.3"
+toml = "^0.10.2"
+pyarrow = "^12.0.1"
+tqdm = "^4.65.0"
+dvc = "^3.5.0"
+openpyxl = "^3.1.2"
+scmrepo = {git = "https://github.com/iterative/scmrepo.git", rev = "refs/pull/259/head"}
+numba = "0.57.1"
+pyod = "^1.1.0"
+plotnine = "^0.12.2"
+critdd = {path = "../src/critdd/dist/critdd-0.0.5.dev0-py3-none-any.whl"}
+xlrd = ">=2.0.01"
+metaod = {git = "https://github.com/wjn0/MetaOD.git"}
+scikit-learn = "1.2.2"
+jinja2 = "^3.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+pre-commit = "^3.3.3"
+
+[tool.isort]
+profile = "black"
+src_paths = "traq"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,166 @@
+vars:
+  - trials:
+    - name: hipattack
+      title: HIPATTACK
+    - name: poise
+      title: POISE1
+    - name: manage
+      title: MANAGE
+    - name: compass
+      title: COMPASS
+    - name: tips3
+      title: TIPS3
+    - name: hope3
+      title: HOPE-3
+    - name: rely
+      title: RE-LY
+  - output_directory: data
+
+stages:
+  diff:
+    foreach: ${trials}
+    do:
+      cmd: >
+        poetry run python3 -m traq.preprocessing diff
+        --config_filename configs/${item.name}.toml
+        --output_directory ${output_directory}
+      deps:
+        - traq/preprocessing/diff.py
+        - configs/${item.name}.toml
+        - data/raw/${item.title}
+      outs:
+        - data/diffs/${item.name}
+
+          #  summarize:
+          #    foreach: ${trials}
+          #    do:
+          #      cmd: >
+          #        poetry run python3 -m traq.preprocessing summarize
+          #        --config_filename configs/${item.name}.toml
+          #        --output_directory ${output_directory}
+          #      deps:
+          #        - traq/preprocessing/summarize.py
+          #        - configs/${item.name}.toml
+          #        - data/diffs/${item.name}
+          #      outs:
+          #        - data/summaries/${item.name}
+
+  derive_labels:
+    foreach: ${trials}
+    do:
+      cmd: >
+        poetry run python3 -m traq.preprocessing derive_labels
+        --config_filename configs/${item.name}.toml
+        --output_directory ${output_directory}
+      deps:
+        - traq/preprocessing/derive_labels.py
+        - configs/${item.name}.toml
+        - data/diffs/${item.name}
+      outs:
+        - data/derived/${item.name}
+
+  explode_pickles:
+    foreach: ${trials}
+    do:
+      cmd: >
+        poetry run python3 -m traq.services.explode_pickles
+        --input_directory data/derived/${item.name}
+        --output_filename data/exploded/${item.name}.pkl
+      deps:
+        - data/derived/${item.name}
+        - traq/utils.py
+        - traq/services/explode_pickles.py
+      outs:
+        - data/exploded/${item.name}.pkl
+
+  compute_meta_features:
+    foreach: ${trials}
+    do:
+      cmd: >
+        python3.7 -W ignore -m traq.services.generate_metafeatures
+        --input_filename data/exploded/${item.name}.pkl
+        --output_filename data/metafeatures/${item.name}.pkl
+      deps:
+        - data/exploded/${item.name}.pkl
+        - traq/services/generate_metafeatures.py
+      outs:
+        - data/metafeatures/${item.name}.pkl
+
+  compare_od_models:
+    foreach: ${trials}
+    do:
+      cmd: >
+        poetry run python3 -W ignore -m traq.compare_unsupervised
+        --input_directory data/derived/${item.name}
+        --output_filename output/comparisons/${item.name}.csv
+      deps:
+        - traq/compare_unsupervised.py
+        - traq/utils.py
+        - traq/evaluation.py
+        - traq/data/pickle.py
+        - traq/data/base.py
+        - traq/grid.py
+        - data/derived/${item.name}
+      outs:
+        - output/comparisons/${item.name}.csv
+
+  fit_metaod_models:
+    foreach: ${trials}
+    do:
+      cmd: >
+        PYTHONPATH=. python3.7 traq/services/train_metaod.py
+        --metafeatures_directory data/metafeatures
+        --performance_directory output/comparisons
+        --output_filename models/metaod/${item.name}.pkl
+        --exclude_from_training ${item.name}
+      deps:
+        - traq/services/train_metaod.py
+        - data/metafeatures
+        - output/comparisons
+      outs:
+        - models/metaod/${item.name}.pkl
+
+  comparison_viz:
+    cmd: >
+      mkdir -p output/viz &&
+      poetry run python3 -m traq.format_comparisons
+      --input_directory output/comparisons
+      --output_directory output/viz > output/viz/summary.txt
+    deps:
+      - traq/format_comparisons.py
+      - output/comparisons
+    outs:
+      - output/viz
+
+  compare_meta_models:
+    foreach: ${trials}
+    do:
+      cmd: >
+        poetry run python3 -W ignore -m traq.compare_selection
+        --input_directory data/derived/${item.name}
+        --output_filename output/meta_comparisons/${item.name}.csv
+      deps:
+        - traq/metaod_wrapper.py
+        - traq/compare_selection.py
+        - traq/utils.py
+        - traq/evaluation.py
+        - traq/data/pickle.py
+        - traq/data/base.py
+        - traq/grid.py
+        - data/derived/${item.name}
+        - data/metafeatures/${item.name}.pkl
+        - models/metaod/${item.name}.pkl
+      outs:
+        - output/meta_comparisons/${item.name}.csv
+
+  meta_comparison_viz:
+    cmd: >
+      mkdir -p output/meta_viz &&
+      poetry run python3 -m traq.format_comparisons
+      --input_directory output/meta_comparisons
+      --output_directory output/meta_viz > output/meta_viz/summary.txt
+    deps:
+      - traq/format_comparisons.py
+      - output/meta_comparisons
+    outs:
+      - output/meta_viz

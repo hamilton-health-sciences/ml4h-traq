@@ -1,0 +1,25 @@
+name: Lint
+on: push
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        container: python:3.11.3-slim
+        steps:
+            - name: Check out server repository
+              uses: actions/checkout@v3
+
+            - name: Install poetry
+              run: python3 -m pip install poetry
+
+            - name: Install deps
+              run: poetry install --only dev  # no need for actual deps because no unit tests
+
+            - name: black
+              run: poetry run black --check traq
+
+            - name: flake8
+              run: poetry run flake8
+
+            - name: isort
+              run: poetry run isort traq --check

@@ -1,0 +1,13 @@
+name = "tips3"
+root = "data/raw/TIPS3"
+
+[metadata]
+filename = "Documents/CRF-DataFax-Setup.xls"
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "5_Final"
+preliminary = ["1_1st_Meeting",
+               "2_1st_Interim",
+               "3_2nd_Interim",
+               "4_PreFinal"]

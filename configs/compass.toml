@@ -1,0 +1,15 @@
+name = "compass"
+root = "data/raw/COMPASS"
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "5_final_2017-10-10"
+preliminary = ["1_1st_meeting_2014-01-02",
+               "2_1st_Interim_2015-03-25",
+               "3_2st_Interim_2016-01-18",
+               "4_prefinal_2017-05-15"]
+
+[metadata]
+filename = "Documents/CRF-DataFax-Setup.xlsx"
+header = 1
+column_name = "SAS libraries"

@@ -1,0 +1,17 @@
+name = "hope3"
+root = "data/raw/HOPE-3"
+
+[metadata]
+filename = "Document/CRF-DataFax-Setup.xls"
+
+[overrides]
+max_num_id_cols = 2
+default_id_cols = ["id"]  # centre sometimes is not present
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "5_Final_6Apr2016"
+preliminary = ["1_1st_meeting_Apr2009",
+               "2_1st_interim_May112012",
+               "3_2nd_interim_23Nov2015",
+               "4_prefinal_12May2014"]

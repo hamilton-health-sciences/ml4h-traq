@@ -1,0 +1,17 @@
+name = "rely"
+root = "data/raw/RE-LY"
+
+[metadata]
+filename = "Documents/CRF-DataFax-Setup.xls"
+
+[overrides]
+max_num_id_cols = 2
+default_id_cols = ["pid"]
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "5_Final"
+preliminary = ["1_1st_Meeting",
+               "2_1st_Interim",
+               "3_2nd_Interim",
+               "4_PreFinal"]

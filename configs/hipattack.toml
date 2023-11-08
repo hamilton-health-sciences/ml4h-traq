@@ -1,0 +1,18 @@
+name = "hipattack"
+root = "data/raw/HIPATTACK"
+
+[metadata]
+filename = "Documents/CRF-DataFax-Setup.xlsx"
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "4th_Final"
+preliminary = ["1st_Data",
+               "1st_Interim Phase1",
+               "1st_Interim Phase2",
+               "2nd_Interim",
+               "3rd_Prefinal"]
+
+[label_derivation]
+exclude_tables = ["ares"]
+exclude_fields = ["brevd"]

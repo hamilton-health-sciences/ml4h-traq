@@ -1,0 +1,1438 @@
+schema: '2.0'
+stages:
+  diff@hipattack:
+    cmd: "echo poetry run python3 -m traq_preprocessing diff --config_filename configs/hipattack.toml
+      --output_directory data\n"
+  summarize@hipattack:
+    cmd: "echo poetry run python3 -m traq_preprocessing summarize --config_filename
+      configs/hipattack.toml --output_directory data\n"
+  derive_labels@hipattack:
+    cmd: "echo poetry run python3 -m traq_preprocessing summarize --config_filename
+      configs/hipattack.toml --output_directory data\n"
+  diff@poise:
+    cmd: "echo poetry run python3 -m traq_preprocessing diff --config_filename configs/poise.toml
+      --output_directory data\n"
+  summarize@poise:
+    cmd: "echo poetry run python3 -m traq_preprocessing summarize --config_filename
+      configs/poise.toml --output_directory data\n"
+  derive_labels@poise:
+    cmd: "echo poetry run python3 -m traq_preprocessing summarize --config_filename
+      configs/poise.toml --output_directory data\n"
+  diff@0:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/hipattack.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/hipattack.toml
+      hash: md5
+      md5: 3926f6678dd8d282357874e07bd08cbe
+      size: 402
+    - path: data/raw/HIPATTACK
+      hash: md5
+      md5: 45e8c39bdc08cd06ed6a19fcb1d9284b.dir
+      size: 1043140127
+      nfiles: 323
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/hipattack
+      hash: md5
+      md5: feef810572787e4bdb73e3e165848d81.dir
+      size: 129973947
+      nfiles: 335
+  diff@1:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/poise.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/poise.toml
+      hash: md5
+      md5: ee0307a1bde83849969f45edc704caa0
+      size: 460
+    - path: data/raw/POISE1
+      hash: md5
+      md5: 08ae6337a047a76d9bd3dbd673ad4d76.dir
+      size: 686995067
+      nfiles: 264
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/poise
+      hash: md5
+      md5: a3d9d9e5de4062f855daa1deaca16082.dir
+      size: 113845636
+      nfiles: 181
+  derive_labels@0:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/hipattack.toml --output_directory data\n"
+    deps:
+    - path: configs/hipattack.toml
+      hash: md5
+      md5: 3926f6678dd8d282357874e07bd08cbe
+      size: 402
+    - path: data/diffs/hipattack
+      hash: md5
+      md5: feef810572787e4bdb73e3e165848d81.dir
+      size: 129973947
+      nfiles: 335
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/hipattack
+      hash: md5
+      md5: 064c5241ea715182676f14094d34cec8.dir
+      size: 12524188
+      nfiles: 5
+  derive_labels@1:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/poise.toml --output_directory data\n"
+    deps:
+    - path: configs/poise.toml
+      hash: md5
+      md5: ee0307a1bde83849969f45edc704caa0
+      size: 460
+    - path: data/diffs/poise
+      hash: md5
+      md5: a3d9d9e5de4062f855daa1deaca16082.dir
+      size: 113845636
+      nfiles: 181
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/poise
+      hash: md5
+      md5: c044acba88508fc9d9a908ddf07e615a.dir
+      size: 83474054
+      nfiles: 5
+  diff@2:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/manage.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/manage.toml
+      hash: md5
+      md5: aa4592eaa5fdc9825c96a4691b543947
+      size: 471
+    - path: data/raw/MANAGE
+      hash: md5
+      md5: 48f13df769eaa8fddfbedf3680397e42.dir
+      size: 1268492804
+      nfiles: 625
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/manage
+      hash: md5
+      md5: 4235a8f1b6c3e9c237923b4ebd41a028.dir
+      size: 106635975
+      nfiles: 547
+  diff@3:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/compass.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/compass.toml
+      hash: md5
+      md5: 0f63ef583ab91c22c1057c6ca50255b4
+      size: 382
+    - path: data/raw/COMPASS
+      hash: md5
+      md5: 0bc039b3bb2543198ba99a86cab3e035.dir
+      size: 19342212602
+      nfiles: 784
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/compass
+      hash: md5
+      md5: 7bc73c7a27b3a5793b83636b90c44bc8.dir
+      size: 1620627729
+      nfiles: 466
+  diff@4:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/tips3.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/tips3.toml
+      hash: md5
+      md5: ee71eadfa921b0a4e220f99cbafeb875
+      size: 281
+    - path: data/raw/TIPS3
+      hash: md5
+      md5: e59ef24e6d616dd9f33e93c5b076b975.dir
+      size: 6099536235
+      nfiles: 519
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/tips3
+      hash: md5
+      md5: 9147110e56f4f0ae7bc18a42935657ac.dir
+      size: 359291230
+      nfiles: 304
+  diff@5:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/hope3.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/hope3.toml
+      hash: md5
+      md5: 7b14f5bab5aa656f216955b1ba838499
+      size: 421
+    - path: data/raw/HOPE-3
+      hash: md5
+      md5: 26fe67d8bddebbff5094b0a624639be7.dir
+      size: 15900183949
+      nfiles: 867
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/hope3
+      hash: md5
+      md5: 865debb852da11a8f6e41965f6a540ef.dir
+      size: 1355417908
+      nfiles: 562
+  diff@6:
+    cmd: "poetry run python3 -m traq.preprocessing diff --config_filename configs/rely.toml
+      --output_directory data\n"
+    deps:
+    - path: configs/rely.toml
+      hash: md5
+      md5: 35e8bf165c3469d32cdefbcc17ca344b
+      size: 339
+    - path: data/raw/RE-LY
+      hash: md5
+      md5: 7556af1a154d2ff37760ddcf1373f773.dir
+      size: 10652239028
+      nfiles: 1058
+    - path: traq/preprocessing/diff.py
+      hash: md5
+      md5: 98070db449ee322ae302d250c8a42fd5
+      size: 21484
+    outs:
+    - path: data/diffs/rely
+      hash: md5
+      md5: 807871b52ddfff7e99c3d3fd704f41c6.dir
+      size: 1869746019
+      nfiles: 380
+  derive_labels@2:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/manage.toml --output_directory data\n"
+    deps:
+    - path: configs/manage.toml
+      hash: md5
+      md5: aa4592eaa5fdc9825c96a4691b543947
+      size: 471
+    - path: data/diffs/manage
+      hash: md5
+      md5: 4235a8f1b6c3e9c237923b4ebd41a028.dir
+      size: 106635975
+      nfiles: 547
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/manage
+      hash: md5
+      md5: f174f0b2819cb32cfe15009a959377e7.dir
+      size: 68636679
+      nfiles: 5
+  derive_labels@3:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/compass.toml --output_directory data\n"
+    deps:
+    - path: configs/compass.toml
+      hash: md5
+      md5: 0f63ef583ab91c22c1057c6ca50255b4
+      size: 382
+    - path: data/diffs/compass
+      hash: md5
+      md5: 7bc73c7a27b3a5793b83636b90c44bc8.dir
+      size: 1620627729
+      nfiles: 466
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/compass
+      hash: md5
+      md5: be5aa867266bd6ad5e3d0d94272f73ee.dir
+      size: 1309620984
+      nfiles: 4
+  derive_labels@4:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/tips3.toml --output_directory data\n"
+    deps:
+    - path: configs/tips3.toml
+      hash: md5
+      md5: ee71eadfa921b0a4e220f99cbafeb875
+      size: 281
+    - path: data/diffs/tips3
+      hash: md5
+      md5: 9147110e56f4f0ae7bc18a42935657ac.dir
+      size: 359291230
+      nfiles: 304
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/tips3
+      hash: md5
+      md5: 2b1995be11a49abc4f0848ede3cf66ec.dir
+      size: 283379036
+      nfiles: 4
+  derive_labels@5:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/hope3.toml --output_directory data\n"
+    deps:
+    - path: configs/hope3.toml
+      hash: md5
+      md5: 7b14f5bab5aa656f216955b1ba838499
+      size: 421
+    - path: data/diffs/hope3
+      hash: md5
+      md5: 865debb852da11a8f6e41965f6a540ef.dir
+      size: 1355417908
+      nfiles: 562
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/hope3
+      hash: md5
+      md5: 16e7c4aedd8ad79d1423186175b02075.dir
+      size: 160165978
+      nfiles: 4
+  derive_labels@6:
+    cmd: "poetry run python3 -m traq.preprocessing derive_labels --config_filename
+      configs/rely.toml --output_directory data\n"
+    deps:
+    - path: configs/rely.toml
+      hash: md5
+      md5: 35e8bf165c3469d32cdefbcc17ca344b
+      size: 339
+    - path: data/diffs/rely
+      hash: md5
+      md5: 807871b52ddfff7e99c3d3fd704f41c6.dir
+      size: 1869746019
+      nfiles: 380
+    - path: traq/preprocessing/derive_labels.py
+      hash: md5
+      md5: 70a53e37d4118e1d360572d07472bb97
+      size: 5690
+    outs:
+    - path: data/derived/rely
+      hash: md5
+      md5: 2f6c6a1e13e9e00085e5b4fc107ea9a3.dir
+      size: 866581996
+      nfiles: 4
+  compare_od_models@0:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/hipattack --output_filename output/comparisons/hipattack.csv\n"
+    deps:
+    - path: data/derived/hipattack
+      hash: md5
+      md5: 064c5241ea715182676f14094d34cec8.dir
+      size: 12524188
+      nfiles: 5
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/hipattack.csv
+      hash: md5
+      md5: 61ea45bacf9c3ec6e2a1c8dc22a04182
+      size: 21313
+  compare_od_models@1:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/poise --output_filename output/comparisons/poise.csv\n"
+    deps:
+    - path: data/derived/poise
+      hash: md5
+      md5: c044acba88508fc9d9a908ddf07e615a.dir
+      size: 83474054
+      nfiles: 5
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/poise.csv
+      hash: md5
+      md5: e1f3905d95ff2e4291b16cb28ce50292
+      size: 87629
+  compare_od_models@2:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/manage --output_filename output/comparisons/manage.csv\n"
+    deps:
+    - path: data/derived/manage
+      hash: md5
+      md5: f174f0b2819cb32cfe15009a959377e7.dir
+      size: 68636679
+      nfiles: 5
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/manage.csv
+      hash: md5
+      md5: e1b5ab3e7035c55ef36d20a0665e024a
+      size: 192290
+  compare_od_models@3:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/compass --output_filename output/comparisons/compass.csv\n"
+    deps:
+    - path: data/derived/compass
+      hash: md5
+      md5: be5aa867266bd6ad5e3d0d94272f73ee.dir
+      size: 1309620984
+      nfiles: 4
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/compass.csv
+      hash: md5
+      md5: 44f02670b65750d51f8bcc87b604633e
+      size: 235827
+  compare_od_models@4:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/tips3 --output_filename output/comparisons/tips3.csv\n"
+    deps:
+    - path: data/derived/tips3
+      hash: md5
+      md5: 2b1995be11a49abc4f0848ede3cf66ec.dir
+      size: 283379036
+      nfiles: 4
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/tips3.csv
+      hash: md5
+      md5: ce54daa3328b2fa2085e7c63cf12000e
+      size: 121533
+  compare_od_models@5:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/hope3 --output_filename output/comparisons/hope3.csv\n"
+    deps:
+    - path: data/derived/hope3
+      hash: md5
+      md5: 16e7c4aedd8ad79d1423186175b02075.dir
+      size: 160165978
+      nfiles: 4
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/hope3.csv
+      hash: md5
+      md5: 250a31a304bcd46e9010d1e2fac2e9a4
+      size: 60164
+  compare_od_models@6:
+    cmd: "poetry run python3 -W ignore -m traq.compare_unsupervised --input_directory
+      data/derived/rely --output_filename output/comparisons/rely.csv\n"
+    deps:
+    - path: data/derived/rely
+      hash: md5
+      md5: 2f6c6a1e13e9e00085e5b4fc107ea9a3.dir
+      size: 866581996
+      nfiles: 4
+    - path: traq/compare_unsupervised.py
+      hash: md5
+      md5: 482fe4da2dc985230913dd729f2ab7bd
+      size: 1157
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/comparisons/rely.csv
+      hash: md5
+      md5: 95437790ff8616ed22ac3db0b0d19ca9
+      size: 150164
+  comparison_viz:
+    cmd: "mkdir -p output/viz && poetry run python3 -m traq.format_comparisons --input_directory
+      output/comparisons --output_directory output/viz > output/viz/summary.txt\n"
+    deps:
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/format_comparisons.py
+      hash: md5
+      md5: 73de9bbe37d5b8a54731af7a154d5eef
+      size: 9287
+    outs:
+    - path: output/viz
+      hash: md5
+      md5: 1db4979c5923e510760b150776e18137.dir
+      size: 84497
+      nfiles: 8
+  explode_pickles@0:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/hipattack
+      --output_filename data/exploded/hipattack.pkl\n"
+    deps:
+    - path: data/derived/hipattack
+      hash: md5
+      md5: 064c5241ea715182676f14094d34cec8.dir
+      size: 12524188
+      nfiles: 5
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/hipattack.pkl
+      hash: md5
+      md5: de22d2da85b1ba7ef2a6f22819d81062
+      size: 8971232
+  explode_pickles@1:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/poise
+      --output_filename data/exploded/poise.pkl\n"
+    deps:
+    - path: data/derived/poise
+      hash: md5
+      md5: c044acba88508fc9d9a908ddf07e615a.dir
+      size: 83474054
+      nfiles: 5
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/poise.pkl
+      hash: md5
+      md5: d600ecc46876d6a2362634b38979e2e7
+      size: 72456504
+  explode_pickles@2:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/manage
+      --output_filename data/exploded/manage.pkl\n"
+    deps:
+    - path: data/derived/manage
+      hash: md5
+      md5: f174f0b2819cb32cfe15009a959377e7.dir
+      size: 68636679
+      nfiles: 5
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/manage.pkl
+      hash: md5
+      md5: 0c895fcf09cbdcafdd3e5ab2b82012aa
+      size: 51811310
+  explode_pickles@3:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/compass
+      --output_filename data/exploded/compass.pkl\n"
+    deps:
+    - path: data/derived/compass
+      hash: md5
+      md5: be5aa867266bd6ad5e3d0d94272f73ee.dir
+      size: 1309620984
+      nfiles: 4
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/compass.pkl
+      hash: md5
+      md5: 164491cfbdd39750fb83e0892b4f6c14
+      size: 916534245
+  explode_pickles@4:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/tips3
+      --output_filename data/exploded/tips3.pkl\n"
+    deps:
+    - path: data/derived/tips3
+      hash: md5
+      md5: 2b1995be11a49abc4f0848ede3cf66ec.dir
+      size: 283379036
+      nfiles: 4
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/tips3.pkl
+      hash: md5
+      md5: c171058655464221005bdd93a6ce9cae
+      size: 217420599
+  explode_pickles@5:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/hope3
+      --output_filename data/exploded/hope3.pkl\n"
+    deps:
+    - path: data/derived/hope3
+      hash: md5
+      md5: 16e7c4aedd8ad79d1423186175b02075.dir
+      size: 160165978
+      nfiles: 4
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/hope3.pkl
+      hash: md5
+      md5: d7b296971d93e8cbb3ed62d20880b359
+      size: 134805572
+  explode_pickles@6:
+    cmd: "poetry run python3 -m traq.services.explode_pickles --input_directory data/derived/rely
+      --output_filename data/exploded/rely.pkl\n"
+    deps:
+    - path: data/derived/rely
+      hash: md5
+      md5: 2f6c6a1e13e9e00085e5b4fc107ea9a3.dir
+      size: 866581996
+      nfiles: 4
+    - path: traq/services/explode_pickles.py
+      hash: md5
+      md5: be9cdc9a7008c2946be098d9d3256223
+      size: 1535
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: data/exploded/rely.pkl
+      hash: md5
+      md5: 9a6f82df071e1fabc241d05b965290f2
+      size: 671067859
+  compute_meta_features@0:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/hipattack.pkl --output_filename data/metafeatures/hipattack.pkl\n"
+    deps:
+    - path: data/exploded/hipattack.pkl
+      hash: md5
+      md5: de22d2da85b1ba7ef2a6f22819d81062
+      size: 8971232
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/hipattack.pkl
+      hash: md5
+      md5: 8a7c89ce769a3e685025f4db965b525e
+      size: 249779
+  compute_meta_features@1:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/poise.pkl --output_filename data/metafeatures/poise.pkl\n"
+    deps:
+    - path: data/exploded/poise.pkl
+      hash: md5
+      md5: d600ecc46876d6a2362634b38979e2e7
+      size: 72456504
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/poise.pkl
+      hash: md5
+      md5: 28c3e3e3a684b2d643b8758e24f08776
+      size: 989497
+  compute_meta_features@2:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/manage.pkl --output_filename data/metafeatures/manage.pkl\n"
+    deps:
+    - path: data/exploded/manage.pkl
+      hash: md5
+      md5: 0c895fcf09cbdcafdd3e5ab2b82012aa
+      size: 51811310
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/manage.pkl
+      hash: md5
+      md5: 3f2081e0c27a80996499b993d1a0401e
+      size: 2160990
+  compute_meta_features@3:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/compass.pkl --output_filename data/metafeatures/compass.pkl\n"
+    deps:
+    - path: data/exploded/compass.pkl
+      hash: md5
+      md5: 164491cfbdd39750fb83e0892b4f6c14
+      size: 916534245
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/compass.pkl
+      hash: md5
+      md5: e98fc12060685654352b23728076651e
+      size: 2422565
+  compute_meta_features@4:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/tips3.pkl --output_filename data/metafeatures/tips3.pkl\n"
+    deps:
+    - path: data/exploded/tips3.pkl
+      hash: md5
+      md5: c171058655464221005bdd93a6ce9cae
+      size: 217420599
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/tips3.pkl
+      hash: md5
+      md5: 65ae77f8168072fa05fc675e106f07e9
+      size: 1410132
+  compute_meta_features@5:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/hope3.pkl --output_filename data/metafeatures/hope3.pkl\n"
+    deps:
+    - path: data/exploded/hope3.pkl
+      hash: md5
+      md5: d7b296971d93e8cbb3ed62d20880b359
+      size: 134805572
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/hope3.pkl
+      hash: md5
+      md5: b3de797c578ed8226a715be79f6a6ab9
+      size: 636576
+  compute_meta_features@6:
+    cmd: "python3.7 -W ignore -m traq.services.generate_metafeatures --input_filename
+      data/exploded/rely.pkl --output_filename data/metafeatures/rely.pkl\n"
+    deps:
+    - path: data/exploded/rely.pkl
+      hash: md5
+      md5: 9a6f82df071e1fabc241d05b965290f2
+      size: 671067859
+    - path: traq/services/generate_metafeatures.py
+      hash: md5
+      md5: 787457a7f54bace78174e4ddcab53856
+      size: 1312
+    outs:
+    - path: data/metafeatures/rely.pkl
+      hash: md5
+      md5: c46a97f6d950acd60820f1db21b8e3c1
+      size: 1660447
+  fit_metaod_models@0:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/hipattack.pkl --exclude_from_training hipattack\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/hipattack.pkl
+      hash: md5
+      md5: 91b8311c14e23a56e45001e6596988fe
+      size: 178966531
+  fit_metaod_models@1:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/poise.pkl --exclude_from_training poise\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/poise.pkl
+      hash: md5
+      md5: 80a97375c5e79a2ada21456d55b169c6
+      size: 158498821
+  fit_metaod_models@2:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/manage.pkl --exclude_from_training manage\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/manage.pkl
+      hash: md5
+      md5: 56199afbcf3c3bf566c072d4a0fe70bf
+      size: 151875842
+  fit_metaod_models@3:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/compass.pkl --exclude_from_training compass\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/compass.pkl
+      hash: md5
+      md5: c7cf6f3e1cf779fe2fe9364b9fe8e5cb
+      size: 149804101
+  fit_metaod_models@4:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/tips3.pkl --exclude_from_training tips3\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/tips3.pkl
+      hash: md5
+      md5: ad4a7de5263cbf869757b352a5b373a9
+      size: 158761093
+  fit_metaod_models@5:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/hope3.pkl --exclude_from_training hope3\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/hope3.pkl
+      hash: md5
+      md5: 03d87921c046fc6b307dc60e615d7705
+      size: 173996549
+  fit_metaod_models@6:
+    cmd: "PYTHONPATH=. python3.7 traq/services/train_metaod.py --metafeatures_directory
+      data/metafeatures --performance_directory output/comparisons --output_filename
+      models/metaod/rely.pkl --exclude_from_training rely\n"
+    deps:
+    - path: data/metafeatures
+      hash: md5
+      md5: e20c4368cab042de0a1456e913300e9d.dir
+      size: 9530069
+      nfiles: 8
+    - path: output/comparisons
+      hash: md5
+      md5: d4429357ec9f5884e2c129b884116ba3.dir
+      size: 868920
+      nfiles: 7
+    - path: traq/services/train_metaod.py
+      hash: md5
+      md5: ad73edaf0e63873a16350f26391d92ee
+      size: 3801
+    outs:
+    - path: models/metaod/rely.pkl
+      hash: md5
+      md5: c95ce268253917458a27a056fdc22e97
+      size: 157631429
+  compare_meta_models@0:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/hipattack --output_filename output/meta_comparisons/hipattack.csv\n"
+    deps:
+    - path: data/derived/hipattack
+      hash: md5
+      md5: 064c5241ea715182676f14094d34cec8.dir
+      size: 12524188
+      nfiles: 5
+    - path: data/metafeatures/hipattack.pkl
+      hash: md5
+      md5: 8a7c89ce769a3e685025f4db965b525e
+      size: 249779
+    - path: models/metaod/hipattack.pkl
+      hash: md5
+      md5: 91b8311c14e23a56e45001e6596988fe
+      size: 178966531
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/hipattack.csv
+      hash: md5
+      md5: d743b33c14578bd82fc0e64e8a973081
+      size: 29794
+  compare_meta_models@1:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/poise --output_filename output/meta_comparisons/poise.csv\n"
+    deps:
+    - path: data/derived/poise
+      hash: md5
+      md5: c044acba88508fc9d9a908ddf07e615a.dir
+      size: 83474054
+      nfiles: 5
+    - path: data/metafeatures/poise.pkl
+      hash: md5
+      md5: 28c3e3e3a684b2d643b8758e24f08776
+      size: 989497
+    - path: models/metaod/poise.pkl
+      hash: md5
+      md5: 80a97375c5e79a2ada21456d55b169c6
+      size: 158498821
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/poise.csv
+      hash: md5
+      md5: 4dc8fc89a6f06f4e61cbc03beb3fe810
+      size: 121763
+  compare_meta_models@2:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/manage --output_filename output/meta_comparisons/manage.csv\n"
+    deps:
+    - path: data/derived/manage
+      hash: md5
+      md5: f174f0b2819cb32cfe15009a959377e7.dir
+      size: 68636679
+      nfiles: 5
+    - path: data/metafeatures/manage.pkl
+      hash: md5
+      md5: 3f2081e0c27a80996499b993d1a0401e
+      size: 2160990
+    - path: models/metaod/manage.pkl
+      hash: md5
+      md5: 56199afbcf3c3bf566c072d4a0fe70bf
+      size: 151875842
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/manage.csv
+      hash: md5
+      md5: aff61d38bf91d9a7205abff3ff218ad0
+      size: 267194
+  compare_meta_models@3:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/compass --output_filename output/meta_comparisons/compass.csv\n"
+    deps:
+    - path: data/derived/compass
+      hash: md5
+      md5: be5aa867266bd6ad5e3d0d94272f73ee.dir
+      size: 1309620984
+      nfiles: 4
+    - path: data/metafeatures/compass.pkl
+      hash: md5
+      md5: e98fc12060685654352b23728076651e
+      size: 2422565
+    - path: models/metaod/compass.pkl
+      hash: md5
+      md5: c7cf6f3e1cf779fe2fe9364b9fe8e5cb
+      size: 149804101
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/compass.csv
+      hash: md5
+      md5: 3c9d198fb3a3d32ddb54f7310273b5c0
+      size: 317417
+  compare_meta_models@4:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/tips3 --output_filename output/meta_comparisons/tips3.csv\n"
+    deps:
+    - path: data/derived/tips3
+      hash: md5
+      md5: 2b1995be11a49abc4f0848ede3cf66ec.dir
+      size: 283379036
+      nfiles: 4
+    - path: data/metafeatures/tips3.pkl
+      hash: md5
+      md5: 65ae77f8168072fa05fc675e106f07e9
+      size: 1410132
+    - path: models/metaod/tips3.pkl
+      hash: md5
+      md5: ad4a7de5263cbf869757b352a5b373a9
+      size: 158761093
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/tips3.csv
+      hash: md5
+      md5: 436452950c3c9a0c7525a6dac7592ace
+      size: 168110
+  compare_meta_models@5:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/hope3 --output_filename output/meta_comparisons/hope3.csv\n"
+    deps:
+    - path: data/derived/hope3
+      hash: md5
+      md5: 16e7c4aedd8ad79d1423186175b02075.dir
+      size: 160165978
+      nfiles: 4
+    - path: data/metafeatures/hope3.pkl
+      hash: md5
+      md5: b3de797c578ed8226a715be79f6a6ab9
+      size: 636576
+    - path: models/metaod/hope3.pkl
+      hash: md5
+      md5: 03d87921c046fc6b307dc60e615d7705
+      size: 173996549
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/hope3.csv
+      hash: md5
+      md5: a8cf69e3332d7a9fa15f19ba82c4724d
+      size: 81912
+  compare_meta_models@6:
+    cmd: "poetry run python3 -W ignore -m traq.compare_selection --input_directory
+      data/derived/rely --output_filename output/meta_comparisons/rely.csv\n"
+    deps:
+    - path: data/derived/rely
+      hash: md5
+      md5: 2f6c6a1e13e9e00085e5b4fc107ea9a3.dir
+      size: 866581996
+      nfiles: 4
+    - path: data/metafeatures/rely.pkl
+      hash: md5
+      md5: c46a97f6d950acd60820f1db21b8e3c1
+      size: 1660447
+    - path: models/metaod/rely.pkl
+      hash: md5
+      md5: c95ce268253917458a27a056fdc22e97
+      size: 157631429
+    - path: traq/compare_selection.py
+      hash: md5
+      md5: 03d9236a10b0e358ef7a7d750debd666
+      size: 1707
+    - path: traq/data/base.py
+      hash: md5
+      md5: f31bf4ca4a944720d13ad3650f10bda4
+      size: 2364
+    - path: traq/data/pickle.py
+      hash: md5
+      md5: 10cccce94b78fe41de65047b7bdfe86e
+      size: 2115
+    - path: traq/evaluation.py
+      hash: md5
+      md5: e5c58690a4928eaf772d5a9ee5e9f628
+      size: 4205
+    - path: traq/grid.py
+      hash: md5
+      md5: 8f7ee8edfdc0c1cc61b6a4ae70029a94
+      size: 473
+    - path: traq/metaod_wrapper.py
+      hash: md5
+      md5: e0cc3184917e44231cb51554f8d4e9bc
+      size: 4142
+    - path: traq/utils.py
+      hash: md5
+      md5: 9e1f19f13fe3b0a381daa7c83305d3b0
+      size: 557
+    outs:
+    - path: output/meta_comparisons/rely.csv
+      hash: md5
+      md5: d10fcb5b6ccfb00b59b42189282c8c9b
+      size: 205377
+  meta_comparison_viz:
+    cmd: "mkdir -p output/meta_viz && poetry run python3 -m traq.format_comparisons
+      --input_directory output/meta_comparisons --output_directory output/meta_viz
+      > output/meta_viz/summary.txt\n"
+    deps:
+    - path: output/meta_comparisons
+      hash: md5
+      md5: e087ba3d0cc5ee0da153f9fc4f38b615.dir
+      size: 1191567
+      nfiles: 7
+    - path: traq/format_comparisons.py
+      hash: md5
+      md5: 73de9bbe37d5b8a54731af7a154d5eef
+      size: 9287
+    outs:
+    - path: output/meta_viz
+      hash: md5
+      md5: b3d63744f373e47b6e84c4d93f758f3d.dir
+      size: 83462
+      nfiles: 8

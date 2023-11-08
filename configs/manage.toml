@@ -1,0 +1,20 @@
+name = "manage"
+root = "data/raw/MANAGE"
+
+[metadata]
+filename = "Document/CRF-DataFax-Setup.xlsx"
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "6_final_1mar2018"
+preliminary = ["1_1st_meeting_DEC2014",
+               "2_1st_interim_13Jan2016",
+               "3_2nd_interim_19Aug2016",
+               "4_3rd_interim_10Mar2017",
+               "5_prefinal_4Dec2017"]
+
+[tables]
+exclude = ["baseline",
+           "alloutcomes",
+           "feeding",
+           "hosp"]

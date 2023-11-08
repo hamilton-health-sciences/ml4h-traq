@@ -1,0 +1,22 @@
+name = "poise"
+root = "data/raw/POISE1"
+
+[overrides]
+max_num_id_cols = 2
+default_id_cols = ["id"]
+
+[snapshots]
+root_subdir = "Data"
+gold_standard = "6_final_01jun07"
+preliminary = ["1_1st_meeting_15apr04",
+               "2_1st_interim_09jun05",
+               "3_2nd_interim_16jan06",
+               "4_3rd_interim_08nov06",
+               "5_prefinal_08feb07"]
+
+[metadata]
+unavailable = true
+
+[label_derivation]
+exclude_tables = ["ares"]
+exclude_fields = []
